@@ -21,6 +21,16 @@
     &.image1 {
       width: 60%;
     }
+    &.image2 {
+      width: 35%;
+    }
+    &.image3 {
+      bottom: 30%;
+      width: 50%;
+    }
+    &.image4 {
+      width: 40%;
+    }
   }
 }
 
@@ -37,7 +47,7 @@
 }
 
 .page4 {
-  background-color: $grey;
+  background-color: $blue;
 }
 
 .description {

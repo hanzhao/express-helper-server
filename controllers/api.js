@@ -35,10 +35,14 @@ router.get('/user/item_list', async (req, res) => {
   try {
     let user = await User.findById(req.session.user)
     let items = await user.getItems({
-      order: 'id DESC'
+      order: 'item.id DESC',
+      include: [{
+        model: Mailer, attributes: ['username']
+      }]
     })
     return res.json({ code: 0, items })
   } catch (e) {
+    console.error(e)
     return res.json({ code: -1, error: '用户信息错误' })
   }
 })
@@ -109,7 +113,10 @@ router.get('/mailer/item_list', async (req, res) => {
   try {
     let mailer = await Mailer.findById(req.session.mailer)
     let items = await mailer.getItems({
-      order: 'id DESC'
+      order: 'item.id DESC',
+      include: [{
+        model: User, attributes: ['username']
+      }]
     })
     return res.json({ code: 0, items })
   } catch (e) {
