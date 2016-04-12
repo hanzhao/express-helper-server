@@ -7,6 +7,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
+import session from 'express-session'
 import favicon from 'serve-favicon'
 import methodOverride from 'method-override'
 
@@ -14,6 +15,8 @@ import webpack from 'webpack'
 import webpackConfig from './webpack.config.dev'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
+
+import models from './models'
 
 const env = process.env.NODE_ENV || 'development'
 const port = process.env.PORT || 3000
@@ -26,7 +29,12 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
-app.use(methodOverride())
+app.use(session({
+  name: 'express.sid',
+  saveUninitialized: true,
+  resave: false,
+  secret: 'expreeeeeesss'
+}))
 /* Static assets */
 if (env == 'development') {
   const compiler = webpack(webpackConfig)

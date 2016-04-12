@@ -1,5 +1,16 @@
 @import "normalize.css";
+html {
+  font-size: 12px;
+}
+.container {
+  margin-top: 6.4rem;
+}
 
-:global(.am-topbar) {
-  margin-bottom: 0;
+:global(.am-slider-default) {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+:global(.am-slider-default .am-control-nav) {
+  bottom: 0;
 }

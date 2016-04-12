@@ -1,68 +1,133 @@
 @import "../variables";
 
-@keyframes bigger {
+@keyframes wave {
   0% {
-    transform: rotateX(-1deg) rotateY(-1deg) rotateZ(-1deg);
-    margin-top: -1px;
+    transform: rotateZ(-1deg);
   }
   100% {
-    transform: rotateX(1deg) rotateY(1deg) rotateZ(1deg);
-    margin-top: 1px;
+    transform: rotateZ(1deg);
   }
 }
 
-.animateButton1 {
+.page {
+  position: relative;
+  padding-top: 1px;
+  .image {
+    position: absolute;
+    right: 10%;
+    bottom: 40%;
+    animation: right-in ease-in 5.7s;
+    animation-iteration-count: infinite;
+    &.image1 {
+      width: 60%;
+    }
+  }
+}
+
+.page1 {
+  background-color: $indigo;
+}
+
+.page2 {
+  background-color: $cyan;
+}
+
+.page3 {
+  background-color: $teal;
+}
+
+.page4 {
+  background-color: $grey;
+}
+
+.description {
   position: absolute;
   top: 15%;
-  left: 20%;
-  width: 200px;
-  height: 80px;
-  border-radius: 3px;
-  font-size: 22px;
-  opacity: 0.8;
-  animation: bigger ease-in-out 1s;
+  left: 15%;
+  font-size: 3.5rem;
+  color: $white;
+  animation: left-in ease-in 5.7s;
   animation-iteration-count: infinite;
-  animation-direction: alternate;
 }
 
-.animateButton2 {
-  position: absolute;
-  top: 28%;
-  left: 10%;
-  width: 200px;
-  height: 80px;
-  border-radius: 3px;
-  font-size: 22px;
-  opacity: 0.8;
-  animation: bigger ease-in-out 1s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+@keyframes left-in {
+  0% {
+    margin-left: -50%;
+    font-size: 1rem;
+  }
+  10% {
+    margin-left: -50%;
+    font-size: 1rem;
+  }
+  20% {
+    margin-left: 0%;
+    font-size: 3.5rem;
+  }
+  100% {
+    margin-left: 0%;
+    font-size: 3.5rem;
+  }
 }
 
-.animateButton3 {
-  position: absolute;
-  top: 50%;
-  left: 40%;
-  width: 200px;
-  height: 80px;
-  border-radius: 3px;
-  font-size: 22px;
-  opacity: 0.8;
-  animation: bigger ease-in-out 1s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+@keyframes left-bottom-in {
+  0% {
+    margin-bottom: -50%;
+    transform: rotateZ(0deg);
+  }
+  40% {
+    margin-bottom: -50%;
+    transform: rotateZ(0deg);
+  }
+  50% {
+    transform: rotateZ(0deg);
+  }
+  60% {
+    margin-bottom: 0%;
+    transform: rotateZ(1080deg);
+  }
+  100% {
+    margin-bottom: 0%;
+    transform: rotateZ(1080deg);
+  }
 }
 
-.animateButton4 {
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animateButton {
   position: absolute;
-  top: 55%;
-  left: 10%;
+  bottom: 20%;
+  left: 50%;
   width: 200px;
+  margin-left: -100px;
   height: 80px;
   border-radius: 3px;
   font-size: 22px;
   opacity: 0.8;
-  animation: bigger ease-in-out 1s;
+  animation: fade-in ease-in 5.7s;
   animation-iteration-count: infinite;
-  animation-direction: alternate;
+}
+
+@keyframes right-in {
+  0% {
+    margin-right: -50%;
+  }
+  10% {
+    margin-right: 0%;
+  }
+  100% {
+    margin-right: 0%;
+  }
 }

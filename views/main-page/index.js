@@ -1,59 +1,69 @@
 'use strict'
 import React from 'react'
 import { Slider, Button } from 'amazeui-react'
+import classNames from 'classnames'
 
-import goout from './goout.jpg'
-import bigthing from './bigthing.jpg'
-import noperson from './noperson.jpg'
-import bath from './bath.jpg'
+import goout from './goout.png'
 
 import styles from './styles'
 
+function adjustSliderHeight() {
+  [].forEach.call(document.getElementsByClassName(styles.page), (e) => {
+    e.style.height = `${window.innerHeight - 64 * 1.2}px`
+  })
+}
+
 class MainPage extends React.Component {
-  state = {
-    content: ""
-  };
   componentDidMount = () => {
-    let length = 1;
-    setInterval(() => {
-      if (length <= 11) {
-        length += 1
-      } else {
-        length = 1
-      }
-      if (length < 7) {
-        this.setState({
-          content: "下载收货助手".slice(0, length)
-        })
-      }
-    }, 450)
+    window.addEventListener('resize', adjustSliderHeight)
+    setTimeout(adjustSliderHeight, 1)
   };
   render() {
     return (
-      <Slider theme="a5">
+      <Slider>
         <Slider.Item>
-          <img src={goout} />
-          <Button amStyle="danger" className={styles.animateButton1}>
-            {this.state.content}
-          </Button>
+          <div className={classNames(styles.page, styles.page1)}>
+            <div className={styles.description}>
+              出门在外，担心拿不到快递？
+            </div>
+            <Button amStyle="danger" className={styles.animateButton}>
+              下载收货助手
+            </Button>
+            <img src={goout} className={classNames(styles.image, styles.image1)} />
+          </div>
         </Slider.Item>
         <Slider.Item>
-          <img src={bigthing} />
-          <Button amStyle="secondary" className={styles.animateButton2}>
-            {this.state.content}
-          </Button>
+          <div className={classNames(styles.page, styles.page2)}>
+            <div className={styles.description}>
+              出门在外，担心拿不到快递？
+            </div>
+            <Button amStyle="warning" className={styles.animateButton}>
+              下载收货助手
+            </Button>
+            <img src={goout} className={classNames(styles.image, styles.image1)} />
+          </div>
         </Slider.Item>
         <Slider.Item>
-          <img src={noperson} />
-          <Button amStyle="warning" className={styles.animateButton3}>
-            {this.state.content}
-          </Button>
+          <div className={classNames(styles.page, styles.page3)}>
+            <div className={styles.description}>
+              出门在外，担心拿不到快递？
+            </div>
+            <Button amStyle="default" className={styles.animateButton}>
+              下载收货助手
+            </Button>
+            <img src={goout} className={classNames(styles.image, styles.image1)} />
+          </div>
         </Slider.Item>
         <Slider.Item>
-          <img src={bath} />
-          <Button amStyle="success" className={styles.animateButton4}>
-            {this.state.content}
-          </Button>
+          <div className={classNames(styles.page, styles.page4)}>
+            <div className={styles.description}>
+              出门在外，担心拿不到快递？
+            </div>
+            <Button amStyle="success" className={styles.animateButton}>
+              下载收货助手
+            </Button>
+            <img src={goout} className={classNames(styles.image, styles.image1)} />
+          </div>
         </Slider.Item>
       </Slider>
     )
