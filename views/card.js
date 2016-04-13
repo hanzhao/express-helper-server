@@ -65,20 +65,13 @@ class CardList extends React.Component {
   }
 }
 
-const formatDate = (value) => `${value.getDate()}/${value.getMonth() + 1}/${value.getFullYear()}`;
-
 @reduxForm({
   form: 'add-card',
   fields: ['no', 'name', 'date', 'cvv']
 }, undefined, {
   onSubmit: (data) => {
-    data.date = formatDate(data.date)
     ajax.post('/api/user/add_card', data).then(() => {
-      if (navigator.userAgent.match(/Android/i)) {
-        document.location = '/card'
-      } else {
-        window.location.href = '/card'
-      }
+      store.dispatch(push('/card'))
     })
     return {
       type: 'NOTHING'
@@ -97,7 +90,7 @@ class CardManager extends React.Component {
       <form>
         <Input type='text' label='信用卡卡号' {...no} />
         <Input type='text' label='开户姓名' {...name} />
-        <DatePicker inputFormat={formatDate} label='过期时间' {...date} />
+        <Input type='text' label='过期时间' {...date} />
         <Input type='text' label='CVV 安全码' {...cvv} />
         <Button icon='add' label='添加信用卡' raised accent
           onClick={handleSubmit} />
