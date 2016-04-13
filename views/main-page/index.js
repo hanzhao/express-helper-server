@@ -27,7 +27,8 @@ class MainPage extends React.Component {
         <Slider.Item>
           <div className={classNames(styles.page, styles.page1)}>
             <div className={styles.description}>
-              出门在外，担心拿不到快递？
+              出门在外，
+              <br /> 担心拿不到快递？
             </div>
             <Button amStyle="danger" className={styles.animateButton}>
               下载收货助手
@@ -38,7 +39,8 @@ class MainPage extends React.Component {
         <Slider.Item>
           <div className={classNames(styles.page, styles.page2)}>
             <div className={styles.description}>
-              平时工作忙，还能放肆网购吗？
+              平时工作忙，
+              <br /> 还能放肆网购吗？
             </div>
             <Button amStyle="warning" className={styles.animateButton}>
               下载收货助手
@@ -49,7 +51,8 @@ class MainPage extends React.Component {
         <Slider.Item>
           <div className={classNames(styles.page, styles.page3)}>
             <div className={styles.description}>
-              客户老不在家，业绩老上不去怎么办？
+              客户老不在家，
+              <br /> 业绩老上不去怎么办？
             </div>
             <Button amStyle="default" className={styles.animateButton}>
               下载送货助手
@@ -60,10 +63,11 @@ class MainPage extends React.Component {
         <Slider.Item>
           <div className={classNames(styles.page, styles.page4)}>
             <div className={styles.description}>
-              物业不靠谱，快递员真难当！
+              物业不靠谱，
+              <br /> 快递员真难当！
             </div>
             <Button amStyle="success" className={styles.animateButton}>
-              下载收货助手
+              下载送货助手
             </Button>
             <img src={sad} className={classNames(styles.image, styles.image4)} />
           </div>

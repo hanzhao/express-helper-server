@@ -1,13 +1,24 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import redux from 'redux'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+import { Provider, connect } from 'react-redux'
+import { reduxForm } from 'redux-form'
+import { syncHistoryWithStore, push } from 'react-router-redux'
+
+import store from './redux/store'
+
 import Input from 'react-toolbox/lib/input'
-import {Card, CardTitle, CardText} from 'react-toolbox/lib/card'
+import { Card, CardTitle, CardText } from 'react-toolbox/lib/card'
+import DatePicker from 'react-toolbox/lib/date_picker'
 import Button from 'react-toolbox/lib/button'
 import classNames from 'classnames'
 
 import ajax from './ajax'
 
 import styles from './cstyles'
+
+const history = syncHistoryWithStore(browserHistory, store)
 
 function insertSpace(s) {
   let ret = ''
@@ -20,6 +31,12 @@ function insertSpace(s) {
   return ret
 }
 
+@connect(
+  (state) => ({ }),
+  (dispatch) => ({
+    handleClick: () => dispatch(push('/card/add'))
+  })
+)
 class CardList extends React.Component {
   state = {
     cards: []
@@ -41,23 +58,57 @@ class CardList extends React.Component {
             </Card>
           ))
         }
-        <Button className={styles.iconButton} icon='+' floating accent mini />
+        <Button className={styles.iconButton} icon='add' floating accent
+                onClick={this.props.handleClick} />
       </div>
     )
   }
 }
 
+const formatDate = (value) => `${value.getDate()}/${value.getMonth() + 1}/${value.getFullYear()}`;
+
+@reduxForm({
+  form: 'add-card',
+  fields: ['no', 'name', 'date', 'cvv']
+}, undefined, {
+  onSubmit: (data) => {
+    data.date = formatDate(data.date)
+    ajax.post('/api/user/add_card', data).then(() => {
+      window.location.href = '/card'
+    })
+    return {
+      type: 'NOTHING'
+    }
+  }
+})
 class CardManager extends React.Component {
   render() {
+    const {
+      fields: {
+        no, name, date, cvv
+      },
+      handleSubmit
+    } = this.props
     return (
       <form>
-        <Input type='text' label='信用卡卡号' />
-        <Input type='text' label='开户姓名' />
-        <Input type='text' label='过期时间' />
-        <Input type='text' label='CVV 安全码' />
+        <Input type='text' label='信用卡卡号' {...no} />
+        <Input type='text' label='开户姓名' {...name} />
+        <DatePicker inputFormat={formatDate} label='过期时间' {...date} />
+        <Input type='text' label='CVV 安全码' {...cvv} />
+        <Button icon='add' label='添加信用卡' raised accent
+          onClick={handleSubmit} />
       </form>
     )
   }
 }
 
-ReactDOM.render(<CardList />, document.getElementById('react-root'))
+const router = (
+  <Provider store={store}>
+    <Router history={history}>
+      <Route path="/card" component={CardList} />
+      <Route path="/card/add" component={CardManager} />
+    </Router>
+  </Provider>
+)
+
+ReactDOM.render(router, document.getElementById('react-root'))

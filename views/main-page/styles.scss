@@ -16,7 +16,7 @@
     position: absolute;
     right: 10%;
     bottom: 40%;
-    animation: right-in ease-in 5.7s;
+    animation: right-in ease-in 7s;
     animation-iteration-count: infinite;
     &.image1 {
       width: 60%;
@@ -25,8 +25,8 @@
       width: 35%;
     }
     &.image3 {
-      bottom: 30%;
-      width: 50%;
+      width: 40%;
+      bottom: 10%;
     }
     &.image4 {
       width: 40%;
@@ -54,9 +54,9 @@
   position: absolute;
   top: 15%;
   left: 15%;
-  font-size: 3.5rem;
+  font-size: 5.5rem;
   color: $white;
-  animation: left-in ease-in 5.7s;
+  animation: left-in ease-in 7s;
   animation-iteration-count: infinite;
 }
 
@@ -65,17 +65,17 @@
     margin-left: -50%;
     font-size: 1rem;
   }
-  10% {
+  20% {
     margin-left: -50%;
     font-size: 1rem;
   }
-  20% {
+  30% {
     margin-left: 0%;
-    font-size: 3.5rem;
+    font-size: 5.5rem;
   }
   100% {
     margin-left: 0%;
-    font-size: 3.5rem;
+    font-size: 5.5rem;
   }
 }
 
@@ -105,10 +105,10 @@
   0% {
     opacity: 0;
   }
-  30% {
+  40% {
     opacity: 0;
   }
-  40% {
+  60% {
     opacity: 1;
   }
   100% {
@@ -126,7 +126,7 @@
   border-radius: 3px;
   font-size: 22px;
   opacity: 0.8;
-  animation: fade-in ease-in 5.7s;
+  animation: fade-in ease-in 7s;
   animation-iteration-count: infinite;
 }
 
@@ -135,6 +135,9 @@
     margin-right: -50%;
   }
   10% {
+    margin-right: -50%;
+  }
+  20% {
     margin-right: 0%;
   }
   100% {

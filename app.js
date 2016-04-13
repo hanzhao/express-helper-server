@@ -45,8 +45,8 @@ if (env == 'development') {
   app.use(webpackHotMiddleware(compiler))
 } else {
   app.use(favicon(`${ROOT}/public/favicon.ico`))
-  app.use('/public', express.static(`${ROOT}/public`))
 }
+app.use('/', express.static(`${ROOT}/public`))
 
 /* Set up controllers */
 import apiController from './controllers/api'

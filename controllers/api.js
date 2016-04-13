@@ -66,7 +66,6 @@ router.post('/user/check_item', async (req, res) => {
 })
 
 router.get('/user/card_list', async (req, res) => {
-  req.session.user = 1
   if (!req.session.user) {
     return res.json({ code: -1, error: '用户未登录' })
   }
