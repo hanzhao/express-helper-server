@@ -6,19 +6,19 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "build": "./node_modules/.bin/webpack -p --config webpack.config.prod.js",
+    "build": "NODE_ENV=production ./node_modules/.bin/webpack -p --config webpack.config.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/magicae/nodejs-react-boilerplate.git"
+    "url": "git+https://github.com/magicae/express-helper-server.git"
   },
   "author": "Magica",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/magicae/nodejs-react-boilerplate/issues"
+    "url": "https://github.com/magicae/express-helper-server/issues"
   },
-  "homepage": "https://github.com/magicae/nodejs-react-boilerplate#readme",
+  "homepage": "https://github.com/magicae/express-helper-server#readme",
   "engine": {
     "node": ">= 4.0.0"
   },
