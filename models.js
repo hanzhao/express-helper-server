@@ -37,8 +37,25 @@ export const Item = sequelize.define('item', {
   }
 }, { timestamps: true })
 
+export const Card  = sequelize.define('card', {
+  no: {
+    type: Sequelize.STRING
+  },
+  cvv: {
+    type: Sequelize.INTEGER
+  },
+  name: {
+    type: Sequelize.STRING
+  },
+  date: {
+    type: Sequelize.STRING
+  }
+})
+
 User.hasMany(Item)
+User.hasMany(Card)
 Mailer.hasMany(Item)
+Card.belongsTo(User)
 Item.belongsTo(User)
 Item.belongsTo(Mailer)
 
@@ -47,6 +64,7 @@ if (process.env.NODE_ENV !== 'production') {
     await User.sync({force: true})
     await Mailer.sync({force: true})
     await Item.sync({force: true})
+    await Card.sync({force: true})
     const magica = await User.create({
       username: '13222222222',
       password: 'dummydummy'
@@ -70,6 +88,23 @@ if (process.env.NODE_ENV !== 'production') {
         item.setUser(magica),
         item.setMailer(potaty)
       ])
+    }
+    const cards = await Promise.all([
+      Card.create({
+        no: '6310450322344212352',
+        cvv: 1342,
+        name: 'Magica Lin',
+        date: '12/22/2022'
+      }),
+      Card.create({
+        no: '5324341928483510294',
+        cvv: 3952,
+        name: 'Magica Lin',
+        date: '03/19/2022'
+      })
+    ])
+    for (let card of cards) {
+      await card.setUser(magica)
     }
   })().catch((e) => {
     console.error(e)

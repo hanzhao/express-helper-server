@@ -1,7 +1,8 @@
 module.exports = {
   context: `${__dirname}/views`,
   entry: {
-    main: './app.js'
+    main: './app.js',
+    card: './card.js'
   },
   output: {
     path: `${__dirname}/public`,

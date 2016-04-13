@@ -7,6 +7,10 @@ module.exports = {
     main: [
       'webpack-hot-middleware/client',
       './app.js'
+    ],
+    card: [
+      'webpack-hot-middleware/client',
+      './card.js'
     ]
   },
   output: {

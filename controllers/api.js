@@ -7,7 +7,7 @@ Promise.promisifyAll(fs)
 import { Router } from 'express'
 const router = Router()
 
-import { User, Mailer, Item } from '../models'
+import { User, Mailer, Item, Card } from '../models'
 
 router.post('/user/sign_in', async (req, res) => {
   let username = req.body.username
@@ -62,6 +62,41 @@ router.post('/user/check_item', async (req, res) => {
     }
   } catch (e) {
     return res.json({ code: -1, error: '快递不存在或数据库错误' })
+  }
+})
+
+router.get('/user/card_list', async (req, res) => {
+  req.session.user = 1
+  if (!req.session.user) {
+    return res.json({ code: -1, error: '用户未登录' })
+  }
+  try {
+    let user = await User.findById(req.session.user)
+    let cards = await user.getCards({
+      order: 'id DESC'
+    })
+    return res.json({ code: 0, cards })
+  } catch (e) {
+    return res.json({ code: -1, error: '系统错误' })
+  }
+})
+
+router.post('/user/add_card', async (req, res) => {
+  if (!req.session.user) {
+    return res.json({ code: -1, error: '用户未登录' })
+  }
+  try {
+    let user = await User.findById(req.session.user)
+    let card = await Card.create({
+      no: req.body.no,
+      cvv: req.body.cvv,
+      date: req.body.date,
+      name: req.body.name
+    })
+    await card.setUser(user)
+    return res.json({ code: 0 })
+  } catch (e) {
+    return res.json({ code: -1, error: '添加卡片失败' })
   }
 })
 
