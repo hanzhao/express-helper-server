@@ -74,7 +74,11 @@ const formatDate = (value) => `${value.getDate()}/${value.getMonth() + 1}/${valu
   onSubmit: (data) => {
     data.date = formatDate(data.date)
     ajax.post('/api/user/add_card', data).then(() => {
-      window.location.href = '/card'
+      if (navigator.userAgent.match(/Android/i)) {
+        document.location = '/card'
+      } else {
+        window.location.href = '/card'
+      }
     })
     return {
       type: 'NOTHING'
