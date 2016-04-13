@@ -30,9 +30,11 @@ class MainPage extends React.Component {
               出门在外，
               <br /> 担心拿不到快递？
             </div>
-            <Button amStyle="danger" className={styles.animateButton}>
-              下载收货助手
-            </Button>
+            <a href="/apks/ExpressHelper.apk" target="_blank">
+              <Button amStyle="danger" className={styles.animateButton}>
+                下载收货助手
+              </Button>
+            </a>
             <img src={goout} className={classNames(styles.image, styles.image1)} />
           </div>
         </Slider.Item>
@@ -42,9 +44,11 @@ class MainPage extends React.Component {
               平时工作忙，
               <br /> 还能放肆网购吗？
             </div>
-            <Button amStyle="warning" className={styles.animateButton}>
-              下载收货助手
-            </Button>
+            <a href="/apks/ExpressHelper.apk" target="_blank">
+              <Button amStyle="warning" className={styles.animateButton}>
+                下载收货助手
+              </Button>
+            </a>
             <img src={work} className={classNames(styles.image, styles.image2)} />
           </div>
         </Slider.Item>
@@ -54,9 +58,11 @@ class MainPage extends React.Component {
               客户老不在家，
               <br /> 业绩老上不去怎么办？
             </div>
-            <Button amStyle="default" className={styles.animateButton}>
-              下载送货助手
-            </Button>
+            <a href="/apks/CourierHelper.apk" target="_blank">
+              <Button amStyle="default" className={styles.animateButton}>
+                下载送货助手
+              </Button>
+            </a>
             <img src={noperson} className={classNames(styles.image, styles.image3)} />
           </div>
         </Slider.Item>
@@ -66,9 +72,11 @@ class MainPage extends React.Component {
               物业不靠谱，
               <br /> 快递员真难当！
             </div>
-            <Button amStyle="success" className={styles.animateButton}>
-              下载送货助手
-            </Button>
+            <a href="/apks/CourierHelper.apk" target="_blank">
+              <Button amStyle="success" className={styles.animateButton}>
+                下载送货助手
+              </Button>
+            </a>
             <img src={sad} className={classNames(styles.image, styles.image4)} />
           </div>
         </Slider.Item>
